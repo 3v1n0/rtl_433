@@ -182,7 +182,8 @@ static int bresser_6in1_decode(r_device *decoder, bitbuffer_t *bitbuffer)
     msg[12] ^= 0xff;
     msg[13] ^= 0xff;
     msg[14] ^= 0xff;
-    int const rain_ok   = msg[12] <= 0x99 && msg[13] <= 0x99 && msg[14] <= 0x99;
+    //int const rain_ok   = msg[12] <= 0x99 && msg[13] <= 0x99 && msg[14] <= 0x99;
+    int const rain_ok = msg[16] & 1;
     int const rain_raw  = (msg[12] >> 4) * 100000 + (msg[12] & 0x0f) * 10000
             + (msg[13] >> 4) * 1000 + (msg[13] & 0x0f) * 100
             + (msg[14] >> 4) * 10 + (msg[14] & 0x0f);
